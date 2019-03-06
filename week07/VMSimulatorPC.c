@@ -13,10 +13,28 @@ int *tableStart;     // used to keep a permanent referrece to the start of pageT
 
 DWORD WINAPI myThread( LPVOID );
 
-DWORD WINAPI myThread( void *ignored ) {
-   int threadID = (int)ignored;
-   printf( "      thread number: %d\n", threadID );
-   Sleep( 1234 * threadID );
+typedef struct ThreadData_t {
+   int threadID;
+   int time;
+   int startAddress;
+} ThreadData_t;
+
+DWORD WINAPI myThread( LPVOID argStruct ) {
+   ThreadData_t *myData = (ThreadData_t*)argStruct;
+   printf( "      in myThread, " );
+   if( 0 == myData->time ) {
+      myData->time = 17;
+   }
+   printf( "thread number: %d, time: %d, address: %d...\n", myData->threadID, myData->time, myData->startAddress );
+   int instruction = 0;
+   int pageAddress = myData->startAddress;
+   for( int i = 0; i < myData->time; i++ ) {
+      instruction = *(&pageAddress);
+      printf( "         Thread number %d, executing VM instruction: %d\n", myData->threadID, instruction );
+      Sleep( 100 );
+      pageAddress += sizeof(int);
+   }
+   Sleep( myData->time );
    return 0;
 }
 
@@ -24,9 +42,10 @@ int main( int argc, char * argv[] ) {
 
    HANDLE hThreads[NUMBER_OF_PAGES];
    DWORD  threadIDs[NUMBER_OF_PAGES];
+   struct ThreadData_t tData[NUMBER_OF_PAGES];
 
    printf( "\n\n   Welcome to the Virtual Memory Base Table Simulator......\n" );
-   
+
   // allocate space for the page table
    pageTable = (int *)malloc( sizeof(int) * NUMBER_OF_PAGES );
    if( NULL == pageTable ) {
@@ -36,13 +55,13 @@ int main( int argc, char * argv[] ) {
    printf( "\n   Array of size %d allocated for page table...\n", NUMBER_OF_PAGES );
    tableStart = pageTable;
 
-  // allocate space for the page frames 
+  // allocate space for the page frames
    pageFrames = (int *)malloc( (sizeof(int) * FRAME_ARRAY_SIZE) * NUMBER_OF_PAGES );
    if( NULL == pageFrames ) {
       printf( "\n    Could not allocate array of %d size.\n\n", FRAME_ARRAY_SIZE );
       exit( -1 );
    }
-   printf( "\n   Array of size %d allocated for page frames, now filling with random int values...\n", \
+   printf( "\n   Array of size %d allocated for page frames, now filling with random int values...\n\n", \
                 FRAME_ARRAY_SIZE * NUMBER_OF_PAGES );
    frameStart = pageFrames;
 
@@ -68,14 +87,19 @@ int main( int argc, char * argv[] ) {
   //  the thread will read and display a certain number of "pseudo-instructions" for each time
   //    it is accessed
    for( int i = 0; i < NUMBER_OF_PAGES; i++ ) {
-      hThreads[i] = CreateThread( NULL, 0, myThread, (LPVOID)i, 0, &threadIDs[i] );
+      tData[i].threadID = i;
+      tData[i].time = 123 * ((rand() % NUMBER_OF_PAGES) + 1);
+      tData[i].startAddress = pageTable[i];
+      hThreads[i] = CreateThread( NULL, 0, myThread, (LPVOID)(&tData[i]), 0, &threadIDs[i] );
+      // hThreads[i] = CreateThread( NULL, 0, myThread, (LPVOID)i, 0, &threadIDs[i] );
       if( hThreads[i] ) {
          printf( "      myThread %d created successfully and launched...\n", i );
+         Sleep( 1000 );
       } else {
          fprintf( stderr, "CreateThread failed on myThread %d with code %d\n", hThreads[i] );
       }
    }
-   
+   Sleep( 2000 );
 
 
   // free up the memory we've used
