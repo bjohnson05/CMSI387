@@ -4,18 +4,8 @@
 
 Remember that the kernel and the rest of the operating system are two different things!  The kernel is the only thing you will need to build and/or modify in this class.
 
-         <ul><li><strong>Download a copy of the free VM</strong> from Oracle called <q>Virtual Box</q> and install
-                 it.  Versions are available for both Windows [I used version 6.0.4-128413-Win.exe] and Mac [I used
-                 6.0.0-127566-OSX.dmg], so you should be able to do this without regard to which platform you use.
-                 There may be later versions available, and they should work.  I have found that when I started up the
-                 installed versions, I got a notification [on mac] that there is a later version available.  If that is
-                 the case for you, go ahead and install the later version &ndash; it won't corrupt anything you've done
-                 previously.  Virtual Box is available for free from:
-                 <a href='https://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html'>here</a>.</li>
-             <li><strong>Download a copy of Ubuntu Linux</strong> from the Ubuntu website.  I used version 18.10, which is
-                 the SECOND green button on the page.  The "LTS" button is for "Long Term Support" and the 18.10 version
-                 still has 9 months of support if you want it.  Ubuntu is available for free from:
-                 <a href='https://www.ubuntu.com/download/desktop'>here</a>.</li>
+1. <strong>Download a copy of the free VM</strong> from Oracle called <q>Virtual Box</q> and install it.  Versions are available for both Windows [I used version 6.0.4-128413-Win.exe] and Mac [I used 6.0.0-127566-OSX.dmg], so you should be able to do this without regard to which platform you use.  There may be later versions available, and they should work.  I have found that when I started up the installed versions, I got a notification [on mac] that there is a later version available.  If that is the case for you, go ahead and install the later version &ndash; it won't corrupt anything you've done previously.  Virtual Box is available for free from: [this site](https://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
+1. <strong>Download a copy of Ubuntu Linux</strong> from the Ubuntu website.  I used version 18.10, which is the SECOND green button on the page.  The "LTS" button is for "Long Term Support" and the 18.10 version still has 9 months of support if you want it.  Ubuntu is available for free from: [here](https://www.ubuntu.com/download/desktop)
              <li><strong>When you've downloaded it</strong> [it's an <q>iso</q> file] you need to make a new <q>machine</q>
                  on your Virtual Box VM.  Start up the VM, then click the <q>new</q> icon to make a new machine.  Call it
                  whatever you like [I used <q>ubuntuv1</q> so I can make more with successive numbers in case of a mistake].
