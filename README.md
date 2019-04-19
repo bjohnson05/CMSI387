@@ -25,7 +25,6 @@ Remember that the kernel and the rest of the operating system are two different 
 ## The Build Process that helped me the most with Linux
 
 1. <strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
-<blockquote>
   1. LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
   1. The kernel is a <em>file</em> that is in directory "/boot".  The file is called <q>vmlinuz&lt;version&gt;"
   1. Find the linux kernel archives at "www.kernel.org" and download the tarball for the version of interest.  I used 4.19.34 which is from April 5th 2019
