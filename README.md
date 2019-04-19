@@ -65,45 +65,35 @@ Remember that the kernel and the rest of the operating system are two different 
   1. I switched to root account and tried again.  Just did <q><code>make</code></q> and that seemed to work
   1. I then did <q><code>make module_install && make install</code></q> and make skipped the compilation and went directly to "INSTALL"
   1. Finished the build, then restarted Ubuntu
-  1. <strong>FIANLLY SUCCESS!!</strong>  I did a "uname -a" and saw the kernel version is my new 4.19 and the created date is today.
+  1. <strong>FINALLY SUCCESS!!</strong>  I did a "uname -a" and saw the kernel version is my new 4.19 and the created date is today.
 
 
 ## Adding a New System Call to the Kernel
 In the directory where you put your source code; e.g., /home/beej/linux-4.19.34<br />
-   change to the directory arch/x86/entry/syscals<br />
-   find the file "syscall_64.tbl"  [or "syscall_32.tbl" if you are on a 32-bit machine]<br />
-   you can list it out with <q>more</q><br />
-   there are [on my build] 547 entries in there<br />
-   edit the file using vi or vim<br />
-   add your new command to the end with a new number<br />
-   NOTE: you will need to write the code for your addition first because you need the "entry point"<br />
-   the list of calls in the table will show you what you can modify if you are changing something<br />
-             <li><strong>Come up with an idea</strong> for a modification or addition to the Linux kernel, and get it
-                 approved with the instructor.  This might be an addition to an existing command, a new command, or
-                 an entirely new application that runs on Linux.</li>
-             <li><strong>Design the modification</strong>; don't do this in the dark.  You might start by implementing some
-                 version of your idea in a <q>stand-alone</q> way so that you can more easily build and de-bug it.  Doing
-                 this on a prototype can be much faster than having to wait three hours for compilation each time
-                 you re-build the Linux kernel</li>
-             <li><strong>Here is a list of the Spring 2019 project teams</strong> with an idea of what needs to be modified
-                 or implemented to accomplish the project tasks<br />
-                 <ol><li>Chu, Edmiston, Keba: drive automounting ~ module[s]: mount</li>
-                     <li>Crowther, Rajavasireddy, Simmons: user account creation ~ module[s]: useradd</li>
-                     <li>Moini, Lizarda, Zafiris: "hog" system utility that lists CPU hogs ~ new module: hog</li>
-                     <li>Santander, Namba, C. Nguyen: "mbob it" file name case randomizer utility ~ module[s]: "mv" and "ls" utilities</li>
-                     <li>K. Nguyen, Ruiz, Tolliver: "processInfo" module interfaces to kernel log ~ new module: processInfo</li>
-                     <li>Higgins, Fletcher, KPatterson: fun inefficient task scheduler ~ module[s]: sched.c</li>
-                     <li>Lopez, Byrne, Boyac: new scheduling algorithm for the I/O scheduler ~ module[s]: sched.c</li>
-                     <li>Prochnow, Flora, Jay: new output to "w" module ~ module[s]: [[unsure which is required]]</li>
-                     <li>Ochsner, Peters, West: cursor movement without mouse ~ module[s]: mousedev, keydev</li>
-                     <li>Braekman, Kern, Martin: combination utility, mimics "find" and "grep" in one ~ new module: search</li>
-                     <li>Arteaga, Wroblewski, Persily: "top" utility modification for priorities ~ module[s]: top [[might get from http://procps.sourceforge.net/index.html]]</li>
-                     <li>Patterson, Richardson: timedatectl modification ~ modules: set-time</li>
-                 </ol></li>
-             <li><strong>Some project resources</strong>: Consider using "apt-get source &lt;module_name&gt;" to get the source code
-                         for specific commands or modules.  You might get them from
-                         <a href='http://procps.sourceforge.net/index.html'>http://procps.sourceforge.net/index.html</a> or
-                         possibly from <a href='http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566'>
-                         http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566</a>.  Don't forget you may need to <q>sudo</q>
-                         the apt-get command.</li>
+   * NOTE: you will need to write the code for your addition first because you need the "entry point"<br />
+   * change to the directory arch/x86/entry/syscals<br />
+   * find the file "syscall_64.tbl"  [or "syscall_32.tbl" if you are on a 32-bit machine]<br />
+   * you can list it out with <q>more</q><br />
+   * there are [on my build] 547 entries in there<br />
+   * edit the file using vi or vim<br />
+   * add your new command to the end with a new number<br />
+The list of calls in the table will show you what you can modify if you are changing something<br />
+
+* <strong>Come up with an idea</strong> for a modification or addition to the Linux kernel, and get it approved with the instructor.  This might be an addition to an existing command, a new command, or an entirely new application that runs on Linux.
+* <strong>Design the modification</strong>; don't do this in the dark.  You might start by implementing some version of your idea in a <q>stand-alone</q> way so that you can more easily build and de-bug it.  Doing this on a prototype can be much faster than having to wait three hours for compilation each time you re-build the Linux kernel
+* <strong>Here is a list of the Spring 2019 project teams</strong> with an idea of what needs to be modified or implemented to accomplish the project tasks<br />
+<ol><li>Chu, Edmiston, Keba: drive automounting ~ module[s]: mount</li>
+    <li>Crowther, Rajavasireddy, Simmons: user account creation ~ module[s]: useradd</li>
+    <li>Moini, Lizarda, Zafiris: "hog" system utility that lists CPU hogs ~ new module: hog</li>
+    <li>Santander, Namba, C. Nguyen: "mbob it" file name case randomizer utility ~ module[s]: "mv" and "ls" utilities</li>
+    <li>K. Nguyen, Ruiz, Tolliver: "processInfo" module interfaces to kernel log ~ new module: processInfo</li>
+    <li>Higgins, Fletcher, KPatterson: fun inefficient task scheduler ~ module[s]: sched.c</li>
+    <li>Lopez, Byrne, Boyac: new scheduling algorithm for the I/O scheduler ~ module[s]: sched.c</li>
+    <li>Prochnow, Flora, Jay: new output to "w" module ~ module[s]: [[unsure which is required]]</li>
+    <li>Ochsner, Peters, West: cursor movement without mouse ~ module[s]: mousedev, keydev</li>
+    <li>Braekman, Kern, Martin: combination utility, mimics "find" and "grep" in one ~ new module: search</li>
+    <li>Arteaga, Wroblewski, Persily: "top" utility modification for priorities ~ module[s]: top [[might get from http://procps.sourceforge.net/index.html]]</li>
+    <li>Patterson, Richardson: timedatectl modification ~ modules: set-time</li>
+</ol></li>
+* <strong>Some project resources</strong>: Consider using "apt-get source &lt;module_name&gt;" to get the source code for specific commands or modules.  You might get them from [http://procps.sourceforge.net/index.html](http://procps.sourceforge.net/index.html) or possibly from [http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566'](http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566).  Don't forget you may need to <q>sudo</q> the apt-get command.</li>
  
