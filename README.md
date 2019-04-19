@@ -21,24 +21,23 @@ Remember that the kernel and the rest of the operating system are two different 
 1. Run <q>sudo apt-get dist-upgrade</q> to upgrade the distribution manager utility; this will NOT update the UBUNTU O/S, it will ONLY do the distribution manager
 1. Check out [Dr. Forney's homework 3 page](http://forns.lmu.build/classes/spring-2018/cmsi-387/homework/hw3/homework-3.html) for more helpful information, including some fun XKCD comics; there are also some helpful links and advice
 1. Remember that the <q>frustration</q> is part of the <q>fun</q>&hellip;
+
+## The Build Process that helped me the most with Linux
+
 1. <strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
-                 <blockquote>
-                    <pre>
-   LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
-   the kernel is a <em>file</em> that is in directory "/boot".  The file is called <q>vmlinuz&lt;version&gt;"
-   find the linux kernel archives at "www.kernel.org" and download the tarball for the
-      version of interest.  I used 4.19.34 which is from April 5th 2019
-   the "xz" extension is yet another type of "zip" archive compression.  The Linux "tar" program
-      knows how to unzip it with the correct command line switch option "J" <note: uppercase!>
-   start firefox
-   go to www.kernel.org
-   get kernel 4.19.34 tar ball &ndash; goes into Downloads folder when using FireFox
-   use <code>mv</code> command to move the zipped file to your home directory
-   untar with <code>tar xJvf linux-4.19.34.tar.xz</code>: the gibberish <q>xJvf</q> means:
-      x to extract
-      J because it's a zipped file with XZ format
-      v for verbose so you can see the listings
-      f for the file name which follows
+<blockquote><pre>
+  1. LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
+  1. The kernel is a <em>file</em> that is in directory "/boot".  The file is called <q>vmlinuz&lt;version&gt;"
+  1. Find the linux kernel archives at "www.kernel.org" and download the tarball for the version of interest.  I used 4.19.34 which is from April 5th 2019
+  1. The "xz" extension is yet another type of "zip" archive compression.  The Linux "tar" program knows how to unzip it with the correct command line switch option "J" <note: uppercase!>
+  1. Start firefox and navigate to [www.kernel.org](www.kernel.org)
+  1. Get kernel 4.19.34 tar ball &ndash; goes into Downloads folder when using FireFox
+  1. Use the <code>mv</code> command to move the zipped file to your home directory
+  1. Untar with <code>tar xJvf linux-4.19.34.tar.xz</code>: the gibberish <q>xJvf</q> means:
+      * x to extract
+      * J because it's a zipped file with XZ format
+      * v for verbose so you can see the listings
+      * f for the file name which follows
 
    change into the resulting top level directory linux-4.19.34
    sudo apt install gcc
