@@ -25,7 +25,7 @@ Remember that the kernel and the rest of the operating system are two different 
 ## The Build Process that helped me the most with Linux
 
 1. <strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
-<blockquote><pre>
+<blockquote>
   1. LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
   1. The kernel is a <em>file</em> that is in directory "/boot".  The file is called <q>vmlinuz&lt;version&gt;"
   1. Find the linux kernel archives at "www.kernel.org" and download the tarball for the version of interest.  I used 4.19.34 which is from April 5th 2019
@@ -38,22 +38,20 @@ Remember that the kernel and the rest of the operating system are two different 
       * J because it's a zipped file with XZ format
       * v for verbose so you can see the listings
       * f for the file name which follows
-
-   change into the resulting top level directory linux-4.19.34
-   sudo apt install gcc
-   sudo apt install make
-      may get an error as follows:
-         E: Could not get lock /var/lib/dpkg/lock – open (11: Resource temporarily unavailable)
-         E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
-      ps -eaf | grep -i apt  :: this shows running apt processes -- there is a daily check for updates
-                                that locks apt -- you can kill them or you can just wait for them to finish
-      You can use the <code>ps -eaf | grep -i apt</code> command to get the processes using the lock
-      You can use the <code>kill -9 &lt;process ID&gt;</code> command to kill them off
-   sudo apt-get install dpkg-dev
-   sudo apt-get dist-upgrade
-   make menuconfig to see options ~ make sure you SAVE so there is a config file for the build
-   execute the command <code>make && make modules_install && make install</code> to run the build
-      the "&&" means concatenate the commands, but only continues if the previous is successful
+  1. Change into the resulting top level directory linux-4.19.34
+  1. Do <q>sudo apt install gcc</q> to make sure that gcc is installed and updated
+  1. Do <q>sudo apt install make</q> to make sure that the make utility is installed and updated
+  1. During these operations you may get an error as follows:
+         <strong>E: Could not get lock /var/lib/dpkg/lock – open (11: Resource temporarily unavailable)<br />
+         E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?</strong>
+  1. Do <q>ps -eaf | grep -i apt</q>  :: this shows running apt processes ~~ there is a daily check for updates that locks apt ~~ you can kill the processes using <q>kill -9 &lt;process id&gt;, or you can just wait for them to finish, they don't take TOO long...
+  1. You can use the <code>ps -eaf | grep -i apt</code> command to get the processes using the lock
+  1. You can use the <code>kill -9 &lt;process ID&gt;</code> command to kill them off
+  1. Do <q>sudo apt-get install dpkg-dev</q> to install the dpkg manager for the <em>development environment</em>
+  1. Do <q>sudo apt-get dist-upgrade</q> to update the <code>apt-get</code> distribution
+  1. Do <q>make menuconfig</q> to see options ~ <em>make sure you SAVE so there is a config file for the build</em>
+  1. Execute the command <code>make && make modules_install && make install</code> to run the build<br />
+       the "&&" means concatenate the commands, but only continues if the previous is successful
       You might have trouble with some of the required libraries being missing
       I had to get the ssl lib with
          sudo apt-get install libssl-dev
