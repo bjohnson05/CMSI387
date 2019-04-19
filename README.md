@@ -24,7 +24,7 @@ Remember that the kernel and the rest of the operating system are two different 
 
 ## The Build Process that helped me the most with Linux
 
-1. <strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
+1. <strong>Here is a list of things to do and to know</strong> that helped my get my build completed:</br>
   1. LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
   1. The kernel is a <em>file</em> that is in directory "/boot".  The file is called <q>vmlinuz&lt;version&gt;"
   1. Find the linux kernel archives at "www.kernel.org" and download the tarball for the version of interest.  I used 4.19.34 which is from April 5th 2019
@@ -50,46 +50,34 @@ Remember that the kernel and the rest of the operating system are two different 
   1. Do <q>sudo apt-get dist-upgrade</q> to update the <code>apt-get</code> distribution
   1. Do <q>make menuconfig</q> to see options ~ <em>make sure you SAVE so there is a config file for the build</em>
   1. Execute the command <code>make && make modules_install && make install</code> to run the build<br />
-       the "&&" means concatenate the commands, but only continues if the previous is successful
-      You might have trouble with some of the required libraries being missing
-      I had to get the ssl lib with
-         sudo apt-get install libssl-dev
-            the "-dev" makes sure to put the headers where they belong
-      I had to get the ncurses lib with
-         sudo apt install ncurses-dev
-      I had to install bison with
-         sudo apt-get install bison
-      I had to install flex with
-         sudo apt-get install flex
+      The <q>&&</q> means concatenate the commands, but only continues if the previous one is successful<br />
+      You might have trouble with some of the required libraries being missing<br />
+      I had to get the ssl lib with <q><code>sudo apt-get install libssl-dev</code></q><br />
+      &nbsp;&nbsp;&nbsp;the <q>-dev</q> makes sure to put the headers where they belong<br />
+      I had to get the ncurses lib with <q><code>sudo apt install ncurses-dev</code></q><br />
+      I had to install bison with <q><code>sudo apt-get install bison</code></q><br />
+      I had to install flex with <q><code>sudo apt-get install flex</code></q><br />
 
-   then do the make line again:
-      make && make modules_install && make install
+  1. Then I had to do the make line again:<br />
+      <q><code>make && make modules_install && make install</code></q>
+  1. I did this on a VM that had 4096 RAM and 30 GB hard disk and ran out of space; I tried again with 8192 RAM and 40 GB hard disk
+  1. I started the build at 08:43; build failed at about 12:45 because I couldn't make a directory.
+  1. I switched to root account and tried again.  Just did <q><code>make</code></q> and that seemed to work
+  1. I then did <q><code>make module_install && make install</code></q> and make skipped the compilation and went directly to "INSTALL"
+  1. Finished the build, then restarted Ubuntu
+  1. <strong>FIANLLY SUCCESS!!</strong>  I did a "uname -a" and saw the kernel version is my new 4.19 and the created date is today.
 
-   I did this on a VM that had 4096 RAM and 30 GB hard disk and ran out of space
-   Tried again with 8192 RAM and 40 GB hard disk
 
-   Started build at 08:43
-
-   build failed at about 12:45 because I couldn't make a directory.
-   switched to root account and tried again.  Just did "make" and that seemed to work
-   then did "make module_install && make install"  and it skipped the compilation and went directly to "INSTALL"
-
-   FIANLLY SUCCESS!!  I did a "uname -a" and saw the kernel version is my new 4.19 and the created date is today.
-
-   ADDING A NEW SYSTEM CALL TO THE KERNEL
-   ======================================
-
-   In the directory where you put your source code; e.g., /home/beej/linux-4.19.34
-   change to the directory arch/x86/entry/syscals
-   find the file "syscall_64.tbl"  <or "syscall_32.tbl" if you are on a 32-bit machine>
-   you can list it out with "more"
-   there are <on my build> 547 entries in there
-   edit the file using vi or vim
-   add your new command to the end with a new number
-   you will need to write the code for your addition first because you need the "entry point"
-   the list of calls in the table will show you what you can modify if you are changing something
-                    </pre>
-                 </blockquote></li>
+## Adding a New System Call to the Kernel
+In the directory where you put your source code; e.g., /home/beej/linux-4.19.34<br />
+   change to the directory arch/x86/entry/syscals<br />
+   find the file "syscall_64.tbl"  [or "syscall_32.tbl" if you are on a 32-bit machine]<br />
+   you can list it out with <q>more</q><br />
+   there are [on my build] 547 entries in there<br />
+   edit the file using vi or vim<br />
+   add your new command to the end with a new number<br />
+   NOTE: you will need to write the code for your addition first because you need the "entry point"<br />
+   the list of calls in the table will show you what you can modify if you are changing something<br />
              <li><strong>Come up with an idea</strong> for a modification or addition to the Linux kernel, and get it
                  approved with the instructor.  This might be an addition to an existing command, a new command, or
                  an entirely new application that runs on Linux.</li>
