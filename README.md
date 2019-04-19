@@ -79,6 +79,7 @@ In the directory where you put your source code; e.g., /home/beej/linux-4.19.34<
    * add your new command to the end with a new number<br />
 The list of calls in the table will show you what you can modify if you are changing something<br />
 
+## Semester Project Actions and Deliverables
 * <strong>Come up with an idea</strong> for a modification or addition to the Linux kernel, and get it approved with the instructor.  This might be an addition to an existing command, a new command, or an entirely new application that runs on Linux.
 * <strong>Design the modification</strong>; don't do this in the dark.  You might start by implementing some version of your idea in a <q>stand-alone</q> way so that you can more easily build and de-bug it.  Doing this on a prototype can be much faster than having to wait three hours for compilation each time you re-build the Linux kernel
 * <strong>Here is a list of the Spring 2019 project teams</strong> with an idea of what needs to be modified or implemented to accomplish the project tasks<br />
@@ -92,8 +93,10 @@ The list of calls in the table will show you what you can modify if you are chan
     <li>Prochnow, Flora, Jay: new output to "w" module ~ module[s]: [[unsure which is required]]</li>
     <li>Ochsner, Peters, West: cursor movement without mouse ~ module[s]: mousedev, keydev</li>
     <li>Braekman, Kern, Martin: combination utility, mimics "find" and "grep" in one ~ new module: search</li>
-    <li>Arteaga, Wroblewski, Persily: "top" utility modification for priorities ~ module[s]: top [[might get from http://procps.sourceforge.net/index.html]]</li>
+    <li>Arteaga, Wroblewski, Persily: "top" utility modification for priorities ~ module[s]: top [[might get from http://procps.sourceforge.net/index.html]](http://procps.sourceforge.net/index.html)</li>
     <li>Patterson, Richardson: timedatectl modification ~ modules: set-time</li>
 </ol></li>
-* <strong>Some project resources</strong>: Consider using "apt-get source &lt;module_name&gt;" to get the source code for specific commands or modules.  You might get them from [http://procps.sourceforge.net/index.html](http://procps.sourceforge.net/index.html) or possibly from [http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566'](http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566).  Don't forget you may need to <q>sudo</q> the apt-get command.</li>
+* <strong>Some project resources</strong>: Consider using "apt-get source &lt;module_name&gt;" to get the source code for specific commands or modules.  You might get them from [http://procps.sourceforge.net/index.html](http://procps.sourceforge.net/index.html) or possibly from [http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566'](http://lxr.linux.no/#linux+v4.15.14/kernel/sched.c#L3566).  Don't forget you may need to <q>sudo</q> the apt-get command.
+* note that not all of these are technically <q>kernel</q> modifications or addiitons.  However, in my view, if you are creating or modifying a <em>utility level</em> program, you will still be making use of the kernel system calls, and you will have had to build your own version of the kernel as part of the class, so it still counts for credit!
+
  
