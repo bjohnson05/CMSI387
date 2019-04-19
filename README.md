@@ -6,27 +6,27 @@ Remember that the kernel and the rest of the operating system are two different 
 
 1. <strong>Download a copy of the free VM</strong> from Oracle called <q>Virtual Box</q> and install it.  Versions are available for both Windows [I used version 6.0.4-128413-Win.exe] and Mac [I used 6.0.0-127566-OSX.dmg], so you should be able to do this without regard to which platform you use.  There may be later versions available, and they should work.  I have found that when I started up the installed versions, I got a notification [on mac] that there is a later version available.  If that is the case for you, go ahead and install the later version &ndash; it won't corrupt anything you've done previously.  Virtual Box is available for free from: [this site](https://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
 1. <strong>Download a copy of Ubuntu Linux</strong> from the Ubuntu website.  I used version 18.10, which is the SECOND green button on the page.  The "LTS" button is for "Long Term Support" and the 18.10 version still has 9 months of support if you want it.  Ubuntu is available for free from: [here](https://www.ubuntu.com/download/desktop)
-             <li><strong>When you've downloaded it</strong> [it's an <q>iso</q> file] you need to make a new <q>machine</q>
+1. <strong>When you've downloaded it</strong> [it's an <q>iso</q> file] you need to make a new <q>machine</q>
                  on your Virtual Box VM.  Start up the VM, then click the <q>new</q> icon to make a new machine.  Call it
                  whatever you like [I used <q>ubuntuv1</q> so I can make more with successive numbers in case of a mistake].
                  Make sure you select the Linux install [which appears automatically if you name your VM instance with the word
                  ubuntu in it] and click next.  Reportedly you should use at least 4GB of RAM for this instance, so set the
                  slider accordingly, and click next.  You can take the defaults for the rest of the selections.</li>
-             <li><strong>Start the VM you just built</strong>, and us it to install Ubuntu.  There are a number of screens
+1. <strong>Start the VM you just built</strong>, and us it to install Ubuntu.  There are a number of screens
                  that will be required on this first start up and install, but once you have it up and running, it will start
                  Linux automatically every time you start this particular VM instance.  DON'T WORRY about the prompt that
                  says something about <q>erasing your hard disk</q>&hellip; this is just erasing the VIRTUAL MACHINE'S HARD
                  DISK, not the real one on your computer.  Also, REMEMBER YOUR PASSWORD as this will be used to log in and
                  to do <q>sudo</q> tasks later.</li>
-             <li><strong>Start Ubuntu</strong>, if it isn't already started, and wait for it to load completely and display
+1. <strong>Start Ubuntu</strong>, if it isn't already started, and wait for it to load completely and display
                  the desktop.  Click on the little arrow in the upper right corner of the Ubuntu screen, then click the
                  tool icon.  Click the PRIVACY tab and turn screen lock off.  Then click the POWER tab and make sure power
                  saving is set to NEVER blank the screen.</li>
-             <li><strong>Check if GCC is loaded</strong>: open a terminal window in Ubuntu and run the command <q>gcc</g>
+1. <strong>Check if GCC is loaded</strong>: open a terminal window in Ubuntu and run the command <q>gcc</g>
                  to check.  If it's not there, you can get it by doing <q>sudo apt install gcc</q> to get it.  When it is
                  finished, type <q>gcc</q> again to make sure it's working.  NOTE THAT THIS IS A DIFFERENT INSTANCE than the
                  one you installed on your HOST machine to do homework and exercises!</li>
-             <li><strong>Download the source code and build Linux</strong>: this sounds easier than it turns out to be.
+1. <strong>Download the source code and build Linux</strong>: this sounds easier than it turns out to be.
                  There are a number of errors that will appear.  Some of them have fairly straightforward solutions, some of
                  them aren't as easy to find and implement fixes.  Here are some hints:
                  <ul><li>check out <a href='https://askubuntu.com/'>askubuntu.com</a> for help &ndash; this site can be your
@@ -57,7 +57,7 @@ Remember that the kernel and the rest of the operating system are two different 
                          are also some helpful links and advice</li>
                      <li>Remember that the <q>frustration</q> is part of the <q>fun</q>&hellip;</li>
                  </ul></li>
-             <li><strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
+1. <strong>Here is a list of things to do</strong> that helped my get my build completed:</br>
                  <blockquote>
                     <pre>
    LTS = "Long Term Service" ~ you don't really need, but is slightly more stable than non-LTS version
