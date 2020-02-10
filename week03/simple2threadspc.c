@@ -1,7 +1,7 @@
 /**
- * filename: numbers.c
+ * filename: simple2threadspc.c
  * prupose: thread demonstrator on windows
- * \author: Dr. Johnson
+ * \author: B.J. Johnson
  * \date:   2019-02-01
  * \description: starts five threads and gives visible feedback
  *		of those threads running by displaying a number passed
@@ -29,7 +29,7 @@ int main( int argc, char * argv ) {
 	}
 
   // wait for the threads to complete
-	printf( "[Waiting for threads to complete...]\n" );
+	printf( "\n[[Waiting for threads to complete...]]\n\n" );
 	Sleep( 10000 );
 	printf("\n\nMain program completed\n");
 	return EXIT_SUCCESS;
