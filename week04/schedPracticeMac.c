@@ -1,3 +1,22 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * filename: schedPracticeMac.c
+ * prupose: thread and scheduler demonstrator on Mac/POSIX
+ * \author: Dr. Johnson
+ * \date:   2019-02-10
+ * \description: starts a thread for each simulated process, running them until the time
+ *                slice runs out for that thread, and displaying the time used for that
+ *                thread and the time remaining for that thread.  The main program must
+ *                wait until all the threads have completed, so the "quick and dirty"
+ *                way is to just calculate a sleep time that is long enough duration to
+ *                ensure the main won't stop while the children are running.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Revision History:
+ *  =================
+ *  Vers.     Date     Modified by:  Reason for modification
+ *  -----  ----------  ------------  -----------------------------------------------------
+ *  1.0.0  2019-02-10  B.J. Johnson  Initial coding and release
+ *  1.1.0  2020-02-14  B.J. Johnson  Fixed for updated gcc compiler, and to pass structs
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
