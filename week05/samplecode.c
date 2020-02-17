@@ -1,3 +1,22 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * filename: samplecode.c
+ * prupose: producer/consumer example with manual operation
+ * \author: Dr. Johnson
+ * \date:   2019-02-10
+ * \description: demonstration of how mutex can protect a shared resource.  Producer takes
+ *                the lock and writes into the buffer, then releases the lock.  Consumer
+ *                takes the lock and reads from the buffer, then releases the lock.  The
+ *                exercise is to turn this into a threaded example so that the two threads
+ *                work in sync to read/write the buffer and don't either corrupt the data
+ *                or deadlock waiting for the lock.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Revision History:
+ *  =================
+ *  Vers.     Date     Modified by:  Reason for modification
+ *  -----  ----------  ------------  -----------------------------------------------------
+ *  1.0.0  2019-02-10  B.J. Johnson  Initial coding and release
+ *  1.1.0  2020-02-13  B.J. Johnson  Fixed for updated gcc compiler, and to pass structs
+ */
    #include <stdio.h>
    #include <stdlib.h>
 
