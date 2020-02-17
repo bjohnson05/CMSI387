@@ -1,6 +1,6 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * filename: samplecode.c
- * prupose: producer/consumer example with manual operation
+ * purpose: producer/consumer example with manual operation
  * \author: Dr. Johnson
  * \date:   2019-02-10
  * \description: demonstration of how mutex can protect a shared resource.  Producer takes
