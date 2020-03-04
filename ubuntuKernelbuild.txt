@@ -1,0 +1,113 @@
+use 4 GB memory
+use 30 GB hard disk
+
+sudo passwd root
+<set root password>
+su
+<enter root password>
+
+sudo dpkg --configure -a
+sudo apt install gcc
+sudo apt-get update
+sudo vi /etc/apt/sources.list
+sudo apt-get install dpkg-dev
+sudo apt-get dist-upgrade
+sudo apt autoremove
+sudo software-properties-gtk
+apt-get source linux-image-$(uname -r)
+sudo apt-get build-dep linux-image-$(uname -r)
+apt-get source linux-image-$(uname -r)
+pushd linux-signed-4.18.0/
+pushd debian
+chmod a+x rules
+chmod a+x scripts/*a
+chmod scripts/misc/*
+pushd scripts/misc
+chmod a+x *
+popd
+popd
+fakeroot debian/rules clean
+fakeroot debian/rules binary
+fakeroot debian/rules binary-arch
+fakeroot debian/rules binary-indep
+fakeroot debian/rules build
+fakeroot debian/rules build-arch
+fakeroot debian/rules build-indep
+
+
+apt install git
+apt-get install bison
+apt-get install flex
+
+sudo fakeroot make-kpkg --initrd --append-to-version=-beej kernel_image kernel_headers
+
+apt-get install kernel-package libncurses5-dev fakeroot wget bzip2
+======================================================================================================
+helpful stuff to know:
+   LTS = "Long Term Service" don't really need, but is slightly more stable than non-LTS version
+   the kernel is a file that is in directory "/boot".  The file is called "vmlinuz<version>"
+   find the linux kernel archives at "www.kernel.org" and download the tarball for the
+      version of interest.  I used 4.19.34 which is from April 5th 2019
+   the "xz" extension is yet another type of "zip" archive compression.  The Linux "tar" program
+      knows how to unzip it with the correct command line switch option "J" <note: uppercase!>
+start firefox
+go to www.kernel.org
+get kernel 4.19.34 tar ball
+goes into Downloads folder
+mv to home directory
+untar with "tar xJvf linux-4.19.34.tar.xz
+   x to extract
+   J because it's a zipped file with XZ format
+   v for verbose so you can see the listings
+   f for the file name which follows
+
+change into the resulting top level directory linux-4.19.34
+sudo apt install gcc
+sudo apt install make
+   may get and error as follows:
+      E: Could not get lock /var/lib/dpkg/lock – open (11: Resource temporarily unavailable)
+      E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
+   ps -eaf | grep -i apt  :: this shows running apt processes -- there is a daily check for updates
+                             that locks apt -- you can kill them or you can just wait for them to finish
+sudo apt-get install dpkg-dev
+sudo apt-get dist-upgrade
+make menuconfig to see options
+   the "&&" means concatenate the commands, but only continues if the previous is successful
+   might have trouble with some of the required libraries
+   I had to get the ssl lib with
+      sudo apt-get install libssl-dev
+         the "-dev" makes sure to put the headers where they belong
+   I had to get the ncurses lib with
+      sudo apt install ncurses-dev
+   I had to install bison with
+      sudo apt-get install bison
+   I had to install flex with
+      sudo apt-get install flex
+
+
+then do the make line again
+make && make modules_install && make install
+
+I did this on a VM that had 4096 RAM and 30 GB hard disk and ran out of space
+Tried again with 8192 RAM and 40 GB hard disk
+
+Started build at 08:43
+
+build failed at about 12:45 because I couldn't make a directory.
+switched to root account and tried again.  Just did "make" and that seemed to work
+then did "make module_install && make install"  and it skipped the compilation and went directly tin "INSTALL"
+
+FIANLLY SUCCESS!! did a "uname -a" and saw the kernel version is my new 4.19 and the created date is today.
+
+ADDING A NEW SYSTEM CALL TO THE KERNEL
+======================================
+
+In the directory where you put your source code; e.g., /home/beej/linux-4.19.34
+change to the directory arch/x86/entry/syscals
+find the file "syscall_64.tbl"  <or "syscall_32.tbl" if you are on a 32-bit machine>
+you can list it out with "more"
+there are <on my build> 547 entries in there
+edit the file using vi or vim
+add your new command to the end with a new number
+you will need to write the code for your addition first because you need the "entry point"
+the list of calls in the table will show you what you can modify if you are changing something
